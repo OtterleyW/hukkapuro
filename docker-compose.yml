@@ -7,7 +7,7 @@ services:
         image: 'mariadb:10.6'
         working_dir: /application
         volumes:
-            - './hukkapuro:/application'
+            - '.:/application'
         environment:
             - MYSQL_ROOT_PASSWORD=appear-unheard-giggle-DEEP
             - MYSQL_DATABASE=hukkapuro
@@ -20,7 +20,7 @@ services:
         image: 'nginx:alpine'
         working_dir: /application
         volumes:
-            - './hukkapuro:/application'
+            - '.:/application'
             - './phpdocker/nginx/nginx.conf:/etc/nginx/conf.d/default.conf'
         ports:
             - '2510:80'
@@ -29,5 +29,5 @@ services:
         build: phpdocker/php-fpm
         working_dir: /application
         volumes:
-            - './hukkapuro:/application'
+            - '.:/application'
             - './phpdocker/php-fpm/php-ini-overrides.ini:/etc/php/8.2/fpm/conf.d/99-overrides.ini'
